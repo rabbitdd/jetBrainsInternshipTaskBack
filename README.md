@@ -1,12 +1,11 @@
-## Micronaut 2.4.2 Documentation
+## Клиент-серверное одностраничное приложение TODO list на основе технологий Kotlin/Java + Micronaut на сервере и TypeScript/React.js на клиенте.
 
-- [User Guide](https://docs.micronaut.io/2.4.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/2.4.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/2.4.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
 
-## Feature http-client documentation
-
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
+## Back-end
+Контроллеры для обработки запросов к серверу (добавление элемента, удаление, изменение цвета - обновление)
+Так же возможность авторизации и регистрации для новых пользователей
+Каждому пользователю доступны только его задачи, он может менять им цвет, происходит синхронизация и обновление на сервере, как в случае и с другими запросами
+***
+В качестве хранения данных - PostgreSQL, удаленно, на серверах heroku.com, для работы с database использую micronaut data (сервисы и репозитории)
+***
+Для обеспечения безопасного доступа на страницу приложения архитектурно использованны возможности micronaut data, а именно AuthenticationProviderUserPassword
