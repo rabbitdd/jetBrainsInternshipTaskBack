@@ -4,6 +4,7 @@ Thumbs.db
 build/
 target/
 out/
+.mvn/
 .idea
 *.iml
 *.ipr
@@ -12,3 +13,7 @@ out/
 .settings
 .classpath
 .factorypath
+mvnw
+mvnw.bat
+.gitignore
+micronaut-cli.yml
