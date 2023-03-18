@@ -1,20 +1,16 @@
 package mishaninnikita.data;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.context.annotation.Executable;
+import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
-    @Executable
+public interface UserRepository extends CrudRepository<User, Long> {
     @NonNull
-    @Override
-    <S extends User> S save(@NonNull @Valid @NotNull S entity);
-
+    User save(@NotBlank @NonNull User entity);
     Optional<User> findByLogin(String login);
 }

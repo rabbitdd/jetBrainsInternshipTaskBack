@@ -1,33 +1,30 @@
 package mishaninnikita.data;
 
+import jakarta.inject.Singleton;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import java.util.Optional;
 
 @Singleton
 public class UserService {
 
-    @Inject
-    UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    public boolean signUpUser(User user) {
-        try {
-            userRepository.save(user);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+  public UserService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
+
+  public boolean signUpUser(User user) {
+    try {
+      userRepository.save(user);
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
     }
+  }
 
-    public User loadUser(String login) {
-        if (userRepository.findByLogin(login).isPresent()) {
-            return userRepository.findByLogin(login).get();
-        } else {
-            System.out.println("Пользователь с таким именем не существует !");
-            return null;
-        }
-
-    }
-
+  public User loadUser(String login) {
+    Optional<User> userOptional = userRepository.findByLogin(login);
+    return userOptional.orElse(null);
+  }
 }
