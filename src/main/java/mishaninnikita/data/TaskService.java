@@ -1,10 +1,8 @@
 package mishaninnikita.data;
 
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.ArrayList;
-import java.util.Optional;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
 @Singleton
 public class TaskService {
@@ -25,7 +23,6 @@ public class TaskService {
 
     public Iterable<Task> loadTasksByOwner(String owner) {
         Iterable<Task> tasks = taskRepository.findAllByOwner(owner);
-        // System.out.println(tasks);
         tasks.forEach(e -> System.out.println(e.toString()));
         return tasks;
     }
@@ -40,10 +37,9 @@ public class TaskService {
         }
     }
 
-    public boolean changeColorTag(String owner, String taskName, String color) {
+    public void changeColorTag(String owner, String taskName, String color) {
         Task task = taskRepository.findByOwnerAndName(owner, taskName);
         task.setColor(color);
         taskRepository.update(task);
-        return true;
     }
 }

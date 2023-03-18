@@ -4,20 +4,19 @@ micronaut:
   server:
     cors:
       enabled: true
-jackson:
-  bean-introspection-module: true
 
 datasources:
   default:
-    url: jdbc:postgresql://ec2-54-73-58-75.eu-west-1.compute.amazonaws.com:5432/d49u7a3v71rso4
+    url: ${DB_URL}
     driverClassName: org.postgresql.Driver
-    username: scvishmfbjqciu
-    password: b1695457d0d7b133f22d160ef961244999f32293ce441cbe5f82b63b18625a4e
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+application:
+  max: 50
 
 jpa:
   default:
-    packages-to-scan:
-      - 'mishaninnikita'
     properties:
       hibernate:
         hbm2ddl:

@@ -4,7 +4,7 @@ package mishaninnikita.data;
 import javax.persistence.*;
 
 @Entity
-@Table(name="TASKS")
+@Table(name="tasks")
 public class Task {
 
     @Id

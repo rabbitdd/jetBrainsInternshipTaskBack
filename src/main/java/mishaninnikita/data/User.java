@@ -1,16 +1,30 @@
 package mishaninnikita.data;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import io.micronaut.serde.annotation.Serdeable;
 
+import javax.persistence.*;
+
+@Serdeable
 @Entity
-@Table(name="USERS")
+@Table(name="users")
 public class User {
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public User() {
 
