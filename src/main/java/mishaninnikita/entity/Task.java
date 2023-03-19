@@ -1,14 +1,19 @@
-package mishaninnikita.data;
+package mishaninnikita.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.micronaut.serde.annotation.Serdeable;
 
 import javax.persistence.*;
 
+@Serdeable
 @Entity
 @Table(name="tasks")
 public class Task {
 
     @Id
     @GeneratedValue
+    @JsonIgnore
     private Integer id;
 
     public Task() {}

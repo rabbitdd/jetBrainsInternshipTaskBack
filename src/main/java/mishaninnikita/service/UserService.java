@@ -1,6 +1,8 @@
-package mishaninnikita.data;
+package mishaninnikita.service;
 
 import jakarta.inject.Singleton;
+import mishaninnikita.entity.User;
+import mishaninnikita.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -14,17 +16,19 @@ public class UserService {
   }
 
   public boolean signUpUser(User user) {
-    try {
-      userRepository.save(user);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
+    if (existUser(user)) {
       return false;
     }
+    userRepository.save(user);
+    return true;
   }
 
   public User loadUser(String login) {
     Optional<User> userOptional = userRepository.findByLogin(login);
     return userOptional.orElse(null);
+  }
+
+  private boolean existUser(User user) {
+    return userRepository.existsByLogin(user.getLogin());
   }
 }

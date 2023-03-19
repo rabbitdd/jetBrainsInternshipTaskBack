@@ -1,22 +1,20 @@
 package mishaninnikita.controllers;
 
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Post;
-import io.micronaut.http.annotation.Produces;
+import io.micronaut.http.annotation.*;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
-import mishaninnikita.data.User;
+import mishaninnikita.entity.User;
 
 @Secured(SecurityRule.IS_AUTHENTICATED)
-@Controller
+@Controller("/user")
 public class LoginController {
 
-    @Post("/signIn")
+    @Post(uri = "/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public String signInUser(@Body User user) {
-        return "Вы авторизованы !" + user.toString();
+    public HttpResponse<User> signInUser(@Body User user) {
+        return HttpResponse.ok(user);
     }
 }
