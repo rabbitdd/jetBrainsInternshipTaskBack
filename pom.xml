@@ -152,11 +152,10 @@
       <version>0.4</version>
     </dependency>
 
-
-
-
-
-
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-annotations</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
@@ -206,6 +205,11 @@
               <groupId>io.micronaut.data</groupId>
               <artifactId>micronaut-data-processor</artifactId>
               <version>${micronaut.data.version}</version>
+            </path>
+            <path>
+              <groupId>io.micronaut.openapi</groupId>
+              <artifactId>micronaut-openapi</artifactId>
+              <version>4.8.5</version>
             </path>
           </annotationProcessorPaths>
           <compilerArgs>

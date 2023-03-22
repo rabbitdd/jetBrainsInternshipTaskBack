@@ -1,9 +1,10 @@
-package mishaninnikita.data;
+package mishaninnikita.repository;
 
 import io.micronaut.context.annotation.Executable;
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
+import mishaninnikita.entity.Task;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

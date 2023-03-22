@@ -1,8 +1,10 @@
-package mishaninnikita.data;
+package mishaninnikita.service;
 
 
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import mishaninnikita.entity.Task;
+import mishaninnikita.repository.TaskRepository;
 
 @Singleton
 public class TaskService {
