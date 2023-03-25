@@ -24,18 +24,14 @@ public class TaskService {
     }
 
     public Iterable<Task> loadTasksByOwner(String owner) {
-        Iterable<Task> tasks = taskRepository.findAllByOwner(owner);
-        tasks.forEach(e -> System.out.println(e.toString()));
-        return tasks;
+        return taskRepository.findAllByOwner(owner);
     }
 
-    public boolean deleteByOwnerAndName(String owner, String taskName) {
+    public void deleteByOwnerAndName(String owner, String taskName) {
         try {
             taskRepository.deleteByOwnerAndName(owner, taskName);
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 

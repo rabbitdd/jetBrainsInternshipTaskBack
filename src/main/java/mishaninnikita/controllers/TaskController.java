@@ -1,5 +1,6 @@
 package mishaninnikita.controllers;
 
+import io.micronaut.http.HttpParameters;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
@@ -22,7 +23,7 @@ public class TaskController {
 
   @Post
   @Produces(MediaType.APPLICATION_JSON)
-  public HttpResponse<Task> addTaskToTable(@Body Task task) {
+  public HttpResponse<Task> createTask(@Body Task task) {
     if (!taskService.addTask(task)) {
       return HttpResponse.badRequest();
     }
@@ -33,17 +34,25 @@ public class TaskController {
   @Produces(MediaType.APPLICATION_JSON)
   public HttpResponse<List<Task>> getTasks(HttpRequest<?> request) {
     String owner = request.getParameters().get("owner");
-    String delete = request.getParameters().get("delete");
-    String name = request.getParameters().get("name");
-    String color = request.getParameters().get("color");
-
-    if (name != null && delete != null && delete.equals("1")) {
-      taskService.deleteByOwnerAndName(owner, name);
-    } else if (name != null && owner != null && color != null) {
-      taskService.changeColorTag(owner, name, color);
-    }
-
     List<Task> taskList = (List<Task>) taskService.loadTasksByOwner(owner);
     return HttpResponse.ok().body(taskList);
   }
+
+  @Post("/color")
+  @Produces(MediaType.APPLICATION_JSON)
+  public HttpResponse<List<Task>> changeTaskColor(@Body Task task) {
+    taskService.changeColorTag(task.getOwner(), task.getName(), task.getColor());
+    List<Task> taskList = (List<Task>) taskService.loadTasksByOwner(task.getOwner());
+    return HttpResponse.ok().body(taskList);
+  }
+
+  @Delete
+  @Produces(MediaType.APPLICATION_JSON)
+  public HttpResponse<List<Task>> deleteTask(HttpRequest<?> request) {
+    HttpParameters parameters = request.getParameters();
+    taskService.deleteByOwnerAndName(parameters.get("owner"), parameters.get("name"));
+    List<Task> taskList = (List<Task>) taskService.loadTasksByOwner(parameters.get("owner"));
+    return HttpResponse.ok().body(taskList);
+  }
+
 }
