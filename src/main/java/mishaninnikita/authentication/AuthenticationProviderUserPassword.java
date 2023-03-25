@@ -35,6 +35,7 @@ public class AuthenticationProviderUserPassword implements AuthenticationProvide
             logger.info("User with login: {} is authenticated", login);
             emitter.success(AuthenticationResponse.success("user"));
           } else {
+            logger.info("Error");
             emitter.error(new AuthenticationException(new AuthenticationFailed()));
           }
         });

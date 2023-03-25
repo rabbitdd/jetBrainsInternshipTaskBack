@@ -15,6 +15,6 @@ public class LoginController {
     @Post(uri = "/login")
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<User> signInUser(@Body User user) {
-        return HttpResponse.ok(user);
+        return HttpResponse.ok().body(user);
     }
 }
